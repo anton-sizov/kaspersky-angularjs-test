@@ -1,0 +1,36 @@
+{
+  "name": "kaspersky-test-angularjs",
+  "version": "1.0.0",
+  "description": "Test SPA on AngularJS",
+  "author": "Anton Sizov",
+  "scripts": {
+    "start": "npm run build && webpack-dev-server --open",
+    "dev": "npm run watch",
+    "build": "npm run clean && webpack -p --mode=production --progress --colors",
+    "watch": "npm run clean && webpack --mode=development --progress --colors --watch",
+    "clean": "rimraf dist/"
+  },
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.22",
+    "angular": "1.7.8",
+    "webpack": "4.29.6"
+  },
+  "devDependencies": {
+    "@babel/core": "7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "autoprefixer": "^9.5.0",
+    "babel-loader": "8.0.5",
+    "css-loader": "^2.1.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "html-loader": "^0.5.5",
+    "ng-annotate-loader": "^0.6.1",
+    "ng-annotate-webpack-plugin": "^0.3.0",
+    "node-sass": "^4.11.0",
+    "postcss-loader": "^3.0.0",
+    "rimraf": "^2.6.3",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  }
+}

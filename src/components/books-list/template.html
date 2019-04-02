@@ -1,0 +1,6 @@
+<h1>{{ booksListCtrl.title }}</h1>
+<button type="button" ng-click="booksListCtrl.initStorage()">Init Storage</button>
+
+<div ng-repeat="book in booksListCtrl.books">
+  <a ui-sref="book-form({id: book.id})">{{ book.name }}</span>
+</div>

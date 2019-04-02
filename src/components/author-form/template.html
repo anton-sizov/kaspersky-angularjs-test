@@ -1,0 +1,21 @@
+<form name="authorForm" class="author-form" ng-submit="authorFormCtrl.saveAuthor(authorForm)">
+  <div class="field">
+    <label for="firstName" class="field__label">First Name</label>
+    <input type="text"
+           name="firstName"
+           class="field__input"
+           ng-model="authorFormCtrl.author.first_name"
+           ng-maxlength="30">
+  </div>
+  
+  <div class="field">
+    <label for="lastName" class="field__label">Last Name</label>
+    <input type="text"
+           name="lastName"
+           class="field__input"
+           ng-model="authorFormCtrl.author.last_name"
+           ng-maxlength="30">
+  </div>
+  
+  <button type="submit">Save</button>
+</form>

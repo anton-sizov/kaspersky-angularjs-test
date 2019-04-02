@@ -1,0 +1,69 @@
+<form name="bookForm" class="book-form" ng-submit="bookFormCtrl.saveBook(bookForm)">
+  <div class="field">
+    <label for="name" class="field__label">Name</label>
+    <input type="text"
+           name="name"
+           class="field__input"
+           ng-model="bookFormCtrl.book.name"
+           ng-maxlength="30"
+           required>
+  </div>
+
+  <div class="field">
+    <label for="authors" class="field__label">Authors</label>
+    <input type="text"
+           name="authors"
+           class="field__input"
+           ng-model="bookFormCtrl.book.authors">
+  </div>
+
+  <div class="field">
+    <label for="pages" class="field__label">Pages</label>
+    <input type="number"
+           name="pages"
+           class="field__input"
+           ng-model="bookFormCtrl.book.pages"
+           ng-min="1"
+           ng-max="1000"
+           required>
+  </div>
+
+  <div class="field">
+    <label for="publisher" class="field__label">Publisher</label>
+    <input type="text"
+           name="publisher"
+           class="field__input"
+           ng-model="bookFormCtrl.book.publisher"
+           ng-max="30">
+  </div>
+
+  <div class="field">
+    <label for="published" class="field__label">Published</label>
+    <input type="number"
+           name="published"
+           class="field__input"
+           ng-model="bookFormCtrl.book.published"
+           ng-min="1800">
+  </div>
+
+  <div class="field">
+    <label for="circulation" class="field__label">Circulation</label>
+    <input type="date"
+           name="circulation"
+           class="field__input"
+           ng-model="bookFormCtrl.book.circulation_date"
+           min="1800-01-01">
+  </div>
+
+  <div class="field">
+    <label for="isbn" class="field__label">ISBN</label>
+    <input type="text"
+           name="isbn"
+           class="field__input"
+           ng-model="bookFormCtrl.book.isbn"
+           ng-pattern="/^(?=.{13}$)\d{1,5}([- ])\d{1,7}\1\d{1,6}\1(\d|X|x)$/">
+    {{ bookForm.isbn.$valid }}
+  </div>
+  
+  <button type="submit">Save</button>
+</form>
