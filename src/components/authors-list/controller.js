@@ -1,6 +1,7 @@
 export default class AuthorsListController {
-  constructor ($rootScope, $localStorage, AuthorsService) {
+  constructor ($rootScope, $state, $localStorage, AuthorsService) {
     this.$rootScope = $rootScope;
+    this.$state = $state;
     this.$localStorage = $localStorage;
     this.AuthorsService = AuthorsService;
   }
@@ -16,4 +17,13 @@ export default class AuthorsListController {
   loadAuthors () {
     this.authors = this.AuthorsService.getAuthors();
   }
+
+  deleteAuthor (authorId) {
+    this.AuthorsService.deleteAuthor(authorId);
+    this.loadAuthors();
+  }
+
+  goToAuthor (authorId) {
+    this.$state.go('author-form', {id: authorId});
+  } 
 }

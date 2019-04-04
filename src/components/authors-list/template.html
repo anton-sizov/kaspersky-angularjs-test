@@ -1,7 +1,38 @@
-<h1>Авторы</h1>
+<div class="conatiner">
+  <div class="row">
+    <div class="col-6">
+      <div class="d-flex align-items-center mb-3">
+        <h1>Авторы</h1>
+        <a ui-sref="author-form({id: null})" class="ml-auto btn btn-success">Добавить нового автора</a>
+      </div>
 
-<div ng-repeat="author in authorsListCtrl.authors">
-  <a ui-sref="author-form({id: author.id})">
-    {{ author.first_name }} {{ author.last_name }}
-  </a>
+      <table class="table table-hover">
+        <tr>
+          <th>Имя</th>
+          <th>Фамилия</th>
+          <th></th>
+        </tr>
+        <tr ng-repeat="author in authorsListCtrl.authors"
+            ng-mouseover="hoveredAutor = author.id"
+            ng-mouseleave="hoveredAutor = null"
+            class="text-primary"
+            ng-click="authorsListCtrl.goToAuthor(author.id)">
+          <td class="align-middle">{{ author.first_name }}</td>
+          <td class="align-middle">{{ author.last_name }}</td>
+          <td class="align-middle">
+            <button class="btn btn-danger"
+                    type="button"
+                    ng-click="authorsListCtrl.deleteAuthor(author.id)"
+                    ng-class="{'invisible': hoveredAutor != author.id}">
+              Удалить
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div >
+  
 </div>

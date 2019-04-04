@@ -5,3 +5,5 @@ import './providers';
 import './services';
 import './components';
 import './router';
+
+import './style.scss';
