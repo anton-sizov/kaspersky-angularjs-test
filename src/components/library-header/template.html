@@ -1,6 +1,15 @@
-<header class="library-header">
-  <nav class="library-header__nav nav">
-    <a ui-sref="books-list" class="nav__link">Books</a>
-    <a ui-sref="authors-list" class="nav__link">Authors</a>
+<header class="container mb-3">
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="navbar-nav">
+      <a ui-sref="books-list" class="nav-item nav-link">Книги</a>
+      <a ui-sref="authors-list" class="nav-item nav-link">Авторы</a>
+    </div>
+    <form class="form-inline ml-auto">
+      <button class="btn btn-outline-primary"
+              type="button"
+              ng-click="libraryHeaderCtrl.initStorage()">
+        Инициализация
+      </button>
+    </form>
   </nav>
 </header>

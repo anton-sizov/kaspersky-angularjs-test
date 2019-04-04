@@ -22,4 +22,11 @@ export default class AuthorFormController {
       this.AuthorsService.saveAuthor(this.author);
     }
   }
+
+  deleteAuthor() {
+    if (this.author.id) {
+      this.AuthorsService.deleteAuthor(this.author.id);
+      this.authorDeleted = true;
+    }
+  }
 }

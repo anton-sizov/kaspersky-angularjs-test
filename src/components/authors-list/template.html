@@ -1,5 +1,4 @@
-<h1>{{ authorsListCtrl.title }}</h1>
-<button type="button" ng-click="authorsListCtrl.initStorage()">Init Storage</button>
+<h1>Авторы</h1>
 
 <div ng-repeat="author in authorsListCtrl.authors">
   <a ui-sref="author-form({id: author.id})">
