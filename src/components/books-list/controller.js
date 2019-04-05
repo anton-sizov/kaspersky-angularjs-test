@@ -1,6 +1,7 @@
 export default class BooksListController {
-  constructor ($rootScope, $localStorage, BooksService) {
+  constructor ($rootScope, $state, $localStorage, BooksService) {
     this.$rootScope = $rootScope;
+    this.$state = $state;
     this.$localStorage = $localStorage;
     this.BooksService = BooksService;
 
@@ -17,5 +18,14 @@ export default class BooksListController {
 
   loadBooks () {
     this.books = this.BooksService.getBooks();
+  }
+
+  deleteBook (bookId) {
+    this.BooksService.deleteBook(bookId);
+    this.loadBooks();
+  }
+
+  goToBook (bookId) {
+    this.$state.go('book-form', { id: bookId });
   }
 }

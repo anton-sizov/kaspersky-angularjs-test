@@ -1,5 +1,34 @@
-<h1>Книги</h1>
+<div class="conatiner">
+  <div class="row">
+    <div class="col">
+      <div class="d-flex align-items-center mb-3">
+        <h1>Книги</h1>
+        <a ui-sref="book-form({id: null})" class="ml-auto btn btn-success">Добавить новую книгу</a>
+      </div>
 
-<div ng-repeat="book in booksListCtrl.books">
-  <a ui-sref="book-form({id: book.id})">{{ book.name }}</span>
+      <table class="table table-hover">
+        <tr>
+          <th>Имя</th>
+          <th>Фамилия</th>
+          <th></th>
+        </tr>
+        <tr ng-repeat="book in booksListCtrl.books"
+            ng-mouseover="hoveredAutor = book.id"
+            ng-mouseleave="hoveredAutor = null"
+            class="text-primary"
+            ng-click="booksListCtrl.goToBook(book.id)">
+          <td class="align-middle">{{ book.name }}</td>
+          <td class="align-middle">{{ book.last_name }}</td>
+          <td class="align-middle">
+            <button class="btn btn-danger"
+                    type="button"
+                    ng-click="booksListCtrl.deleteBook(book.id)"
+                    ng-class="{'invisible': hoveredAutor != book.id}">
+              Удалить
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>
