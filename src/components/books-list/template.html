@@ -1,6 +1,27 @@
 <div class="conatiner">
   <div class="row">
     <div class="col">
+      <form class="form">
+        <div class="row">
+          <div class="col-2">
+            <div class="form-group">
+              <label>Название</label>
+              <input type="text" class="form-control" ng-model="booksListCtrl.filter.name">
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="form-group">
+              <label>Год публикации</label>
+              <input type="text" class="form-control" ng-model="booksListCtrl.filter.published">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
       <div class="d-flex align-items-center mb-3">
         <h1>Книги</h1>
         <a ui-sref="book-form({id: null})" class="ml-auto btn btn-success">Добавить новую книгу</a>
@@ -8,17 +29,17 @@
 
       <table class="table table-hover">
         <tr>
-          <th>Имя</th>
-          <th>Фамилия</th>
+          <th>Название</th>
+          <th>Год публикации</th>
           <th></th>
         </tr>
-        <tr ng-repeat="book in booksListCtrl.books"
+        <tr ng-repeat="book in booksListCtrl.books | filter:booksListCtrl.filter"
             ng-mouseover="hoveredAutor = book.id"
             ng-mouseleave="hoveredAutor = null"
             class="text-primary"
             ng-click="booksListCtrl.goToBook(book.id)">
           <td class="align-middle">{{ book.name }}</td>
-          <td class="align-middle">{{ book.last_name }}</td>
+          <td class="align-middle">{{ book.published }}</td>
           <td class="align-middle">
             <button class="btn btn-danger"
                     type="button"

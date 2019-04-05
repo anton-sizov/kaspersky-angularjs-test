@@ -14,6 +14,10 @@ class BooksService {
     return books;
   }
 
+  getFilter() {
+    return this.$localStorage.$getItem('filter');
+  }
+
   getBook(bookId) {
     return this.$localStorage.$getItem('books').find(book => book.id == bookId);
   }
@@ -34,6 +38,10 @@ class BooksService {
 
     this.$localStorage.$setItem('books', books);
     this.$localStorage.$setItem('bookLastIndex', lastIndex);
+  }
+
+  saveFilter (filter) {
+    this.$localStorage.$setItem('filter', filter);
   }
 
   deleteBook(bookId) {
