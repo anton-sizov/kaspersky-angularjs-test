@@ -13,12 +13,13 @@ export default class LibraryHeaderController {
       ],
       books: [
         {id: 1, name: 'Book #1', published: 1912},
-        {id: 2, name: 'Book #2', published: 2012},
+        {id: 2, name: 'Book #4', published: 2012},
+        {id: 4, name: 'Book #2', published: 2012},
         {id: 3, name: 'Book #3', published: 1812}],
       authorLastIndex: 3,
       bookLastIndex: 3,
-      filter: {
-        name: '#1'
+      order: {
+        name: 'asc'
       }
     })
 

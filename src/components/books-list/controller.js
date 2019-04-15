@@ -1,3 +1,8 @@
+const ORDERS_DIRECTIONS = {
+  'asc': '+',
+  'desc': '-'
+};
+
 export default class BooksListController {
   constructor ($rootScope, $state, $localStorage, BooksService) {
     this.$rootScope = $rootScope;
@@ -7,35 +12,54 @@ export default class BooksListController {
   }
 
   $onInit () {
-    this.filter = {};
+    this.order = {};
+    this.ordersList = [];
 
     this.loadBooks();
-    this.loadFilter();
+    this.loadOrder();
 
     this.$rootScope.$on('localStorageInitialized', () => {
       this.loadBooks();
-      this.loadFilter();
+      this.loadOrder();
     })
   }
 
-  $doCheck () {
-    if (this.filter.name !== this.oldFilter.name || this.filter.published != this.oldFilter.published) {
-      this.BooksService.saveFilter(this.filter);
-      this.oldFilter = angular.copy(this.filter);
+  toggleOrder (orderType) {
+    if (this.order[orderType] == 'asc') {
+      this.order[orderType] = 'desc';
+    } else if (this.order[orderType] == 'desc') {
+      this.order[orderType] = null;
+    } else {
+      this.order[orderType] = 'asc';
     }
-  } 
+
+    this.buildOrdersList();
+    this.BooksService.saveOrder(this.order);
+  }
+
+  buildOrdersList () {
+    const orderKeysOrder = ['published', 'name'];
+    this.ordersList = [];
+
+    orderKeysOrder.forEach((key) => {
+      if (this.order.hasOwnProperty(key) && this.order[key]) {
+        const order = `${ORDERS_DIRECTIONS[this.order[key]]}${key}`;
+        this.ordersList.push(order);
+      }
+    });
+  }
 
   $onDestroy () {
     this.BooksService.saveFilter(this.filter);
   }
 
   loadBooks () {
-    this.books = this.BooksService.getBooks();
+    this.books = this.BooksService.getBooks() || [];
   }
 
-  loadFilter () {
-    this.filter = this.BooksService.getFilter();
-    this.oldFilter = angular.copy(this.filter);
+  loadOrder () {
+    this.order = this.BooksService.getOrder() || this.order;
+    this.buildOrdersList();
   }
 
   deleteBook (bookId) {

@@ -7,15 +7,11 @@ class BooksService {
     let authors = this.$localStorage.$getItem('authors');
     let books = this.$localStorage.$getItem('books');
 
-    // books.array.forEach(book => {
-    //   book.authors = authors.filter(author => book.authors.include(author.id));
-    // });
-
     return books;
   }
 
-  getFilter() {
-    return this.$localStorage.$getItem('filter');
+  getOrder() {
+    return this.$localStorage.$getItem('order');
   }
 
   getBook(bookId) {
@@ -40,8 +36,8 @@ class BooksService {
     this.$localStorage.$setItem('bookLastIndex', lastIndex);
   }
 
-  saveFilter (filter) {
-    this.$localStorage.$setItem('filter', filter);
+  saveOrder (order) {
+    this.$localStorage.$setItem('order', order);
   }
 
   deleteBook(bookId) {

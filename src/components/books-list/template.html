@@ -1,27 +1,6 @@
 <div class="conatiner">
   <div class="row">
     <div class="col">
-      <form class="form">
-        <div class="row">
-          <div class="col-2">
-            <div class="form-group">
-              <label>Название</label>
-              <input type="text" class="form-control" ng-model="booksListCtrl.filter.name">
-            </div>
-          </div>
-          <div class="col-2">
-            <div class="form-group">
-              <label>Год публикации</label>
-              <input type="text" class="form-control" ng-model="booksListCtrl.filter.published">
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
       <div class="d-flex align-items-center mb-3">
         <h1>Книги</h1>
         <a ui-sref="book-form({id: null})" class="ml-auto btn btn-success">Добавить новую книгу</a>
@@ -29,11 +8,27 @@
 
       <table class="table table-hover">
         <tr>
-          <th>Название</th>
-          <th>Год публикации</th>
+          <th>
+            Название
+            <span class="sort-toggle" ng-click="booksListCtrl.toggleOrder('name')">
+              <i class="fas fa-sort-amount-up"
+                 ng-show="!booksListCtrl.order['name'] || booksListCtrl.order['name'] == 'asc'"
+                 ng-class="{'text-success': booksListCtrl.order['name']}"></i>
+              <i class="fas fa-sort-amount-down text-success" ng-show="booksListCtrl.order['name'] == 'desc'"></i>
+            </span>
+          </th>
+          <th>
+            Год публикации
+            <span class="sort-toggle" ng-click="booksListCtrl.toggleOrder('published')">
+              <i class="fas fa-sort-amount-up"
+                  ng-show="!booksListCtrl.order['published'] || booksListCtrl.order['published'] == 'asc'"
+                  ng-class="{'text-success': booksListCtrl.order['published']}"></i>
+              <i class="fas fa-sort-amount-down text-success" ng-show="booksListCtrl.order['published'] == 'desc'"></i>
+            </span>
+          </th>
           <th></th>
         </tr>
-        <tr ng-repeat="book in booksListCtrl.books | filter:booksListCtrl.filter"
+        <tr ng-repeat="book in booksListCtrl.books | orderBy:booksListCtrl.ordersList"
             ng-mouseover="hoveredAutor = book.id"
             ng-mouseleave="hoveredAutor = null"
             class="text-primary"
