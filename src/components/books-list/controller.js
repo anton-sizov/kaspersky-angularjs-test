@@ -49,10 +49,6 @@ export default class BooksListController {
     });
   }
 
-  $onDestroy () {
-    this.BooksService.saveFilter(this.filter);
-  }
-
   loadBooks () {
     this.books = this.BooksService.getBooks() || [];
   }
