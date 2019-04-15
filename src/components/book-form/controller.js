@@ -12,6 +12,10 @@ export default class BookFormController {
       authors: [],
       pages: 0,
     }
+    this.imageLoaderError = '';
+
+    this.loadImage = this.loadImage.bind(this);
+    this.setLoaderError = this.setLoaderError.bind(this);
   }
 
   $onInit() {
@@ -35,6 +39,18 @@ export default class BookFormController {
 
   deleteAuthor (authorId) {
     this.book.authors = this.book.authors.filter(author => author.id != authorId);
+  }
+
+  loadImage(image) {
+    this.book.image = image;
+  }
+
+  deleteImage() {
+    this.book.image = null;
+  }
+
+  setLoaderError(error) {
+    this.imageLoaderError = error;
   }
 
   saveBook(form) {
