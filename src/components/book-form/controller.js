@@ -1,5 +1,6 @@
 export default class BookFormController {
-  constructor ($stateParams, BooksService, AuthorsService) {
+  constructor ($state, $stateParams, BooksService, AuthorsService) {
+    this.$state = $state;
     this.$stateParams = $stateParams;
 
     this.BooksService = BooksService;
@@ -38,7 +39,15 @@ export default class BookFormController {
 
   saveBook(form) {
     if (form.$valid) {
-      this.BooksService.saveBook(this.book);
+      this.book = this.BooksService.saveBook(this.book);
+      this.$state.go('book-form', {id: this.book.id});
+    }
+  }
+
+  deleteBook() {
+    if (this.book.id) {
+      this.BooksService.deleteBook(this.book.id);
+      this.bookDeleted = true;
     }
   }
 }

@@ -27,6 +27,8 @@ class AuthorsService {
 
     this.$localStorage.$setItem('authors', authors);
     this.$localStorage.$setItem('authorLastIndex', lastIndex);
+
+    return author;
   }
 
   deleteAuthor(authorId) {

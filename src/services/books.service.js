@@ -7,7 +7,12 @@ class BooksService {
     let authors = this.$localStorage.$getItem('authors');
     let books = this.$localStorage.$getItem('books');
 
-    return books;
+    return books.filter(book => {
+      if (book.circulation_date) {
+        book.circulation_date = new Date(book.circulation_date);
+      }
+      return true;
+    });
   }
 
   getOrder() {
@@ -15,7 +20,12 @@ class BooksService {
   }
 
   getBook(bookId) {
-    return this.$localStorage.$getItem('books').find(book => book.id == bookId);
+    let book = this.$localStorage.$getItem('books').find(book => book.id == bookId);
+    if (book.circulation_date) {
+      book.circulation_date = new Date(book.circulation_date);
+    }
+
+    return book;
   }
 
   saveBook(book) {
@@ -34,6 +44,8 @@ class BooksService {
 
     this.$localStorage.$setItem('books', books);
     this.$localStorage.$setItem('bookLastIndex', lastIndex);
+
+    return book;
   }
 
   saveOrder (order) {

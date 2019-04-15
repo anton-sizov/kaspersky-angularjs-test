@@ -1,5 +1,6 @@
 export default class AuthorFormController {
-  constructor ($stateParams, AuthorsService) {
+  constructor ($state, $stateParams, AuthorsService) {
+    this.$state = $state;
     this.$stateParams = $stateParams;
 
     this.AuthorsService = AuthorsService;
@@ -19,7 +20,8 @@ export default class AuthorFormController {
 
   saveAuthor(form) {
     if (form.$valid) {
-      this.AuthorsService.saveAuthor(this.author);
+      this.author = this.AuthorsService.saveAuthor(this.author);
+      this.$stateParams.go('author-form', {id: this.author.id});
     }
   }
 

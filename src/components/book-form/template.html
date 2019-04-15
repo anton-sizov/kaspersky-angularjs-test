@@ -4,7 +4,7 @@
       <h1 ng-if="!bookFormCtrl.book.id">Новая книга</h1>
       <h1 ng-if="bookFormCtrl.book.id">Изменение книги</h1>
 
-      <form name="bookForm" ng-submit="bookFormCtrl.saveBook(bookForm)" novalidate>
+      <form name="bookForm" novalidate>
         <div class="form-group">
           <label for="name">Название <span class="text-danger">*</span></label>
           <input type="text"
@@ -30,13 +30,13 @@
               </select>
             </div>
             <div class="col-3">
-              <button class="btn btn-success" ng-click="bookFormCtrl.addAuthor()">Добавить</button>
+              <button type="button" class="btn btn-success" ng-click="bookFormCtrl.addAuthor()">Добавить</button>
             </div>
           </div>
           <table class="table table-borderless" ng-show="bookFormCtrl.book.authors.length">
             <tr ng-repeat="author in bookFormCtrl.book.authors track by $index">
               <td>{{ author.last_name }} {{ author.first_name }}</td>
-              <td><button class="btn btn-danger btn-sm" ng-click="bookFormCtrl.deleteAuthor(author.id)">Удалить</button></td>
+              <td><button type="button" class="btn btn-danger btn-sm" ng-click="bookFormCtrl.deleteAuthor(author.id)">Удалить</button></td>
             </tr>
           </table>
           <small class="text-danger" ng-show="!bookFormCtrl.book.authors.length">Должен быть минимум 1 автор</small>
@@ -50,7 +50,7 @@
                   class="form-control"
                   ng-model="bookFormCtrl.book.pages"
                   ng-min="1"
-                  ng-max="1000"
+                  ng-max="10000"
                   required>
           <small class="text-danger" ng-show="bookForm.pages.$error.required">Это поле обязательно</small>
           <small class="text-danger" ng-show="bookForm.pages.$error.max || bookForm.pages.$error.min">
@@ -105,7 +105,7 @@
           <small class="text-danger" ng-show="bookForm.isbn.$invalid">Неверный формат ISBN</small>
         </div>
         
-        <button type="submit" ng-disabled="bookForm.$invalid" class="btn btn-success">Сохранить</button>
+        <button type="button" ng-click="bookFormCtrl.saveBook(bookForm)" ng-disabled="bookForm.$invalid || !bookFormCtrl.book.authors.length" class="btn btn-success">Сохранить</button>
         <button type="button" class="btn btn-danger ml-3" ng-click="bookFormCtrl.deleteBook()" ng-if="bookFormCtrl.book.id">Удалить</button>
       </form>
     </div>
